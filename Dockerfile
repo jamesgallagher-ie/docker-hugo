@@ -1,10 +1,11 @@
 FROM debian
-MAINTAINER matthias@tuxlife.net
+MAINTAINER james@jamesgallagher.ie
 
-# Install pygments (for syntax highlighting) 
+# Add the awscli and associated dependencies
 RUN apt -qq update \
-	&& DEBIAN_FRONTEND=noninteractive apt -qq install -y --no-install-recommends python-pygments git ca-certificates \
+	&& DEBIAN_FRONTEND=noninteractive apt -qq install -y --no-install-recommends python python-pip git ca-certificates \
 	&& rm -rf /var/lib/apt/lists/*
+RUN pip install awscli
 
 # Download and install hugo
 ENV HUGO_VERSION 0.18.1
